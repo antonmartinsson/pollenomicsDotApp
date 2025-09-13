@@ -12,6 +12,8 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      background-color: #ffffff;
+      color: #000000;
     }
     .container {
       display: flex;
@@ -27,6 +29,20 @@
     img {
       max-width: 300px;
       height: auto;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
     }
   </style>
 </head>
