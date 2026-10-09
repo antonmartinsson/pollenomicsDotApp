@@ -2,75 +2,278 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pollenomics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pollenomics – Pollen forecasts for iPhone</title>
+  <meta name="description" content="Pollenomics is your trusty companion during allergy season: daily grass, tree and weed pollen forecasts, 5-day outlooks, home-screen widgets and Siri &amp; Shortcuts support.">
+  <meta name="theme-color" content="#0f1f17">
+  <meta name="apple-itunes-app" content="app-id=6747726612">
+  <link rel="canonical" href="https://pollenomics.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pollenomics">
+  <meta property="og:title" content="Pollenomics – Pollen forecasts for iPhone">
+  <meta property="og:description" content="Daily grass, tree and weed pollen forecasts, 5-day outlooks, widgets and Siri &amp; Shortcuts.">
+  <meta property="og:url" content="https://pollenomics.app/">
+  <meta property="og:image" content="https://pollenomics.app/assets/og-banner.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="747">
+  <meta property="og:image:alt" content="Five iPhones showing Pollenomics pollen forecasts">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@pollenomics">
+  <meta name="twitter:title" content="Pollenomics – Pollen forecasts for iPhone">
+  <meta name="twitter:description" content="Daily grass, tree and weed pollen forecasts, 5-day outlooks, widgets and Siri &amp; Shortcuts.">
+  <meta name="twitter:image" content="https://pollenomics.app/assets/og-banner.jpg">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-0: #0b1711;
+      --bg-1: #0f1f17;
+      --bg-2: #1c3a2a;
+      --green: #2fb36a;
+      --green-deep: #0a8f4a;
+      --text: #e8f1ec;
+      --muted: #a9bfb2;
+      --card: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.09);
+      --radius: 22px;
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: Georgia, "Times New Roman", Times, serif;
       margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #ffffff;
-      color: #000000;
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(1100px 700px at 15% -10%, rgba(47, 179, 106, 0.18), transparent 60%),
+        radial-gradient(900px 600px at 100% 40%, rgba(10, 143, 74, 0.12), transparent 60%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+      background-color: var(--bg-1);
+      -webkit-font-smoothing: antialiased;
     }
-    .container {
-      display: flex;
-      align-items: center;
-      max-width: 800px;
-      margin: 20px;
-      gap: 20px;
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .eyebrow {
+      display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 14px;
     }
-    .text {
-      max-width: 400px;
-      line-height: 1.5;
-      text-align: left;
-    }
-    img {
-      max-width: 300px;
-      height: auto;
+    .lead { color: var(--muted); font-size: 18px; margin: 16px 0 0; max-width: 34em; }
+
+    /* Phone screenshots */
+    .phone {
+      width: 100%; max-width: 330px; margin: 0 auto;
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(47, 179, 106, 0.12));
     }
 
-    .app-store-link {
-      display: inline-block;
-      margin-top: 16px;
+    /* Hero */
+    .hero { padding: 72px 0 48px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 48px; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    .brand img { width: 64px; height: 64px; border-radius: 15px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
+    .brand span { font-family: var(--serif); font-size: 26px; font-weight: 600; }
+    .hero h1 { font-size: clamp(40px, 5.6vw, 64px); }
+    .hero h1 em { font-style: normal; color: var(--green); }
+    .badge { display: inline-block; margin-top: 32px; transition: transform 0.15s ease; }
+    .badge:hover { transform: translateY(-2px); }
+    .badge img { width: 180px; }
+
+    /* Glass cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
-    .app-store-link img {
-      max-width: 200px;
-      width: 100%;
-      height: auto;
+    /* Features */
+    section { padding: 56px 0; }
+    .section-head { max-width: 640px; margin-bottom: 36px; }
+    .section-head h2, .split h2 { font-size: clamp(30px, 4vw, 42px); }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature { padding: 24px; }
+    .feature .icon {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+      background: linear-gradient(180deg, var(--green), var(--green-deep)); margin-bottom: 16px;
     }
-    a, a:visited {
-      color: inherit;
+    .feature .icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .feature h3 { font-size: 20px; margin-bottom: 6px; }
+    .feature p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+    /* Split highlights */
+    .split { padding: 48px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .split + .split { margin-top: 40px; }
+    .split.reverse .split-media { order: -1; }
+    .split .phone { max-width: 300px; }
+    .split ul { margin: 20px 0 0; padding: 0; list-style: none; }
+    .split li { position: relative; padding-left: 26px; margin: 10px 0; color: var(--muted); }
+    .split li::before {
+      content: ""; position: absolute; left: 4px; top: 0.6em; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--green); box-shadow: 0 0 10px rgba(47, 179, 106, 0.8);
     }
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-    }
+    /* Footer */
+    footer { padding: 56px 0 48px; text-align: center; color: var(--muted); font-size: 15px; }
+    .cta { padding: 44px 24px; margin-bottom: 48px; text-align: center; }
+    .cta img.cta-icon { width: 72px; height: 72px; border-radius: 17px; margin: 0 auto 18px; }
+    .cta h2 { font-size: clamp(26px, 3.4vw, 34px); color: var(--text); }
+    .cta p { margin: 10px 0 0; }
+    .cta .badge { margin-top: 22px; }
+    footer .meta { font-size: 14px; }
 
-    @media (max-width: 700px) {
-      .container {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
+    @media (max-width: 900px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .hero { padding: 40px 0 24px; text-align: center; }
+      .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+      .brand { justify-content: center; }
+      .lead { margin-left: auto; margin-right: auto; }
+      .hero .phone { max-width: 280px; }
+      section { padding: 40px 0; }
+      .section-head { text-align: center; margin-left: auto; margin-right: auto; }
+      .features { grid-template-columns: 1fr; gap: 10px; }
+      .feature { padding: 16px 18px; display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; align-items: start; }
+      .feature .icon { margin: 2px 0 0; grid-row: span 2; }
+      .feature h3 { font-size: 18px; margin-bottom: 2px; }
+      .feature p { font-size: 15px; }
+      .section-head { margin-bottom: 24px; }
+      .split { grid-template-columns: 1fr; padding: 24px 0; gap: 28px; text-align: left; }
+      .split.reverse .split-media { order: 0; }
+      .split .phone { max-width: 230px; }
+      .split .lead { font-size: 16.5px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="text">
-      <p>Pollenomics is your trusty companion during allergy season. Whether you're using the app directly, glancing at widgets on your home screen or via asking for pollen forecasts via Shortcuts and Siri, Pollenomics has your back.</p>
-      <p>Have suggestions or need to report a problem? <a href="mailto:coin.sheave-1i@icloud.com">Email me</a>!</p>
-      <a class="app-store-link" href="https://apps.apple.com/se/app/pollenomics/id6747726612" target="_blank" rel="noopener">
-        <img src="Download_on_the_App_Store.png" alt="Download on the App Store" />
-      </a>
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <div class="brand">
+          <img src="assets/app-icon.webp" width="64" height="64" alt="Pollenomics app icon">
+          <span>Pollenomics</span>
+        </div>
+        <h1>Stay one sneeze <em>ahead</em>.</h1>
+        <p class="lead">Your trusty companion during allergy season. Daily grass, tree and weed forecasts – in the app, on your home screen, or just by asking Siri.</p>
+        <a class="badge" href="https://apps.apple.com/se/app/pollenomics/id6747726612" target="_blank" rel="noopener">
+          <img src="Download_on_the_App_Store.png" width="180" height="60" alt="Download on the App Store">
+        </a>
+      </div>
+      <img class="phone" src="assets/screen-forecast.webp" width="720" height="1469" alt="Pollenomics forecast screen with grass, tree and weed pollen levels and a summary by Apple Intelligence">
     </div>
-    <img src="pollenomics web.png" alt="Pollenomics logo" />
-  </div>
+  </header>
+
+  <main>
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Features</span>
+          <h2>Everything you need, nothing you don't.</h2>
+        </div>
+        <div class="features">
+          <div class="feature card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M6 20V11M12 20V5M18 20v-6"/></svg></div>
+            <h3>Daily forecasts</h3>
+            <p>See today's levels for grass, tree and weed pollen at a glance.</p>
+          </div>
+          <div class="feature card">
+            <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+            <h3>5-day outlook</h3>
+            <p>Plan ahead with a forecast for the coming days.</p>
+          </div>
+          <div class="feature card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.6L12 15l-1.8-4.4L5.5 9l4.7-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div>
+            <h3>Apple Intelligence summaries</h3>
+            <p>A short, plain-language summary of the day's forecast.</p>
+          </div>
+          <div class="feature card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l8-8"/></svg></div>
+            <h3>Per-plant details</h3>
+            <p>Dig into individual plants like birch, oak or pine, plus practical tips.</p>
+          </div>
+          <div class="feature card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5"/><path d="M4 12h16"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Siri &amp; Shortcuts</h3>
+            <p>Ask for a forecast hands-free or build it into your routines.</p>
+          </div>
+          <div class="feature card">
+            <div class="icon"><svg viewBox="0 0 24 24"><rect x="7" y="5" width="10" height="14" rx="3"/><path d="M9 5l.5-2h5l.5 2M9 19l.5 2h5l.5-2"/></svg></div>
+            <h3>Apple Watch</h3>
+            <p>Check pollen levels right from your wrist.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="siri">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Siri &amp; Shortcuts</span>
+            <h2>Just ask.</h2>
+            <p class="lead">Ask Siri for a pollen forecast and pick grass, tree or weed – no need to open the app. The same action is available in the Shortcuts app, so you can add it to your morning routine.</p>
+          </div>
+          <div class="split-media">
+            <img class="phone" src="assets/screen-siri.webp" width="720" height="1469" loading="lazy" alt="Siri asking which type of pollen you would like a forecast for: grass, tree or weed">
+          </div>
+        </div>
+
+        <div class="split reverse">
+          <div>
+            <span class="eyebrow">Widgets</span>
+            <h2>Pollen on your home screen.</h2>
+            <p class="lead">Add a widget for a pollen type or a specific plant like birch, and keep the latest forecast one glance away.</p>
+          </div>
+          <div class="split-media">
+            <img class="phone" src="assets/screen-widgets.webp" width="720" height="1469" loading="lazy" alt="Two Pollenomics widgets on the iPhone home screen, one for tree pollen and one for birch">
+          </div>
+        </div>
+
+        <div class="split">
+          <div>
+            <span class="eyebrow">Details</span>
+            <h2>Go plant by plant.</h2>
+            <p class="lead">Tap a pollen type to see how each plant is doing, along with simple tips for getting through high-pollen days.</p>
+          </div>
+          <div class="split-media">
+            <img class="phone" src="assets/screen-tree-detail.webp" width="720" height="1469" loading="lazy" alt="Tree pollen detail sheet with tips and index levels for ash, cottonwood, oak and pine">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cta card">
+        <img class="cta-icon" src="assets/app-icon.webp" width="72" height="72" alt="" loading="lazy">
+        <h2>Get Pollenomics</h2>
+        <p>Available on the App Store for iPhone.</p>
+        <a class="badge" href="https://apps.apple.com/se/app/pollenomics/id6747726612" target="_blank" rel="noopener">
+          <img src="Download_on_the_App_Store.png" width="180" height="60" alt="Download on the App Store" loading="lazy">
+        </a>
+      </div>
+      <p>Have suggestions or need to report a problem? <a href="mailto:support@pollenomics.app">Email me</a>!</p>
+      <p>Follow along on X: <a href="https://x.com/pollenomics" target="_blank" rel="noopener">@pollenomics</a></p>
+      <p class="meta">&copy; <span id="year">2026</span> Pollenomics</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
